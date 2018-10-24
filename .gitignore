@@ -1,0 +1,9 @@
+# Ignore everything
+*
+
+# Except these .. (write files / folders that shouldn't be ignored, below)
+
+!.gitignore
+
+!data/
+!data/**
