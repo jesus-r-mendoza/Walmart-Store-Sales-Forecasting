@@ -5,5 +5,8 @@
 
 !.gitignore
 
-!data/
-!data/**
+!data/       # Don't ignore this folder
+!data/**     # Don't ignore anything in this folder and subfolder
+
+!documents
+!documents/**
