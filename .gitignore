@@ -5,8 +5,10 @@
 
 !.gitignore
 
-!data/       # Don't ignore this folder
-!data/**     # Don't ignore anything in this folder and subfolder
+!data/
+!data/**
 
 !documents
 !documents/**
+
+!*.md
