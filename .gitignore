@@ -18,3 +18,5 @@
 !documents/**
 
 !*.md
+
+.DS_Store
