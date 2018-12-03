@@ -11,9 +11,6 @@
 !src/
 !src/**
 
-!ipynb/
-!ipynb/**
-
 !documents
 !documents/**
 
