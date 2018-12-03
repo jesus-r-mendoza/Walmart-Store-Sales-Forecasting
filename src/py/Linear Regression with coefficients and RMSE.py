@@ -44,7 +44,7 @@ from sklearn.model_selection import cross_val_score
 # In[3]:
 
 
-df = pd.read_csv('../data/merged-train-data.csv')
+df = pd.read_csv('../../data/merged-train-data.csv')
 df[0::100000]
 
 
@@ -58,7 +58,7 @@ df[0::100000]
 y =df['Weekly_Sales']
 X = df.drop(columns=['Weekly_Sales','Type'])
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, 
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3,
                                                     random_state=2)
 
 
@@ -120,4 +120,3 @@ rmse = np.sqrt(mse)
 
 
 print(rmse)
-

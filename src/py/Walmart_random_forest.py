@@ -19,7 +19,7 @@
 # from sklearn.model_selection import train_test_split
 
 #Really need these
-import pandas as pd 
+import pandas as pd
 import numpy as np
 from numpy import *
 
@@ -78,7 +78,7 @@ from sklearn.metrics import mean_squared_error
 # In[39]:
 
 
-df = pd.read_csv('../data/merged-train-data.csv')
+df = pd.read_csv('../../data/merged-train-data.csv')
 df[0::100000]
 
 
@@ -89,7 +89,7 @@ df[0::100000]
 y = df['Weekly_Sales']
 X = df.drop(columns=['Weekly_Sales','Type'])
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, 
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3,
                                                     random_state=2)
 
 print(X.head())
@@ -126,7 +126,7 @@ for i in num_est:
     acc_scores.append(y_predict_score)
     rmse_scores.append(rmse)
     print('Processing with',i,'trees...')
-    
+
 results['Num of Trees'] = num_est
 results['Accuracy Score'] = acc_scores
 results['RMSE'] = rmse_scores

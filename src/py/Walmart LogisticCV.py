@@ -24,15 +24,15 @@ from sklearn.model_selection import train_test_split
 
 # reading a CSV file directly from Web, and store it in a pandas DataFrame:
 # "read_csv" is a pandas function to read csv files from web or local device:
-walmart_features_df =  pd.read_csv('features.csv')
+walmart_features_df =  pd.read_csv('../../data/features.csv')
 
-walmart_sampleSubmission_df =  pd.read_csv('sampleSubmission.csv')
+walmart_sampleSubmission_df =  pd.read_csv('../../data/sampleSubmission.csv')
 
-walmart_stores_df =  pd.read_csv('stores.csv')
+walmart_stores_df =  pd.read_csv('../../data/stores.csv')
 
-walmart_test_df =  pd.read_csv('test.csv')
+walmart_test_df =  pd.read_csv('../../data/test.csv')
 
-walmart_train_df =  pd.read_csv('train.csv')
+walmart_train_df =  pd.read_csv('../../data/train.csv')
 
 
 # In[3]:
@@ -41,7 +41,7 @@ walmart_train_df =  pd.read_csv('train.csv')
 walmart_features_df.fillna(value=0, inplace=True)
 
 #adding all the markdown sales and putting it in one column
-walmart_features_df['Markdowns'] = walmart_features_df['MarkDown1'] + walmart_features_df['MarkDown2'] + walmart_features_df['MarkDown3'] + walmart_features_df['MarkDown4'] + walmart_features_df['MarkDown5'] 
+walmart_features_df['Markdowns'] = walmart_features_df['MarkDown1'] + walmart_features_df['MarkDown2'] + walmart_features_df['MarkDown3'] + walmart_features_df['MarkDown4'] + walmart_features_df['MarkDown5']
 
 labelsToDrop = ['MarkDown1', 'MarkDown2', 'MarkDown3','MarkDown4','MarkDown5']
 walmart_features_df.drop(labels=labelsToDrop,axis=1, inplace=True)
@@ -94,7 +94,7 @@ df[0::1000]
 # In[8]:
 
 
-#creating the feature matrix 
+#creating the feature matrix
 feature_cols = ['Store', 'Temperature','Fuel_Price','CPI','Unemployment', 'Markdowns', 'Size', 'Dept', 'Weekly_Sales', 'Year', 'Month', 'Day']
 X = Merged_Train_Features_Store_Df[feature_cols]
 
@@ -164,7 +164,7 @@ print(score_logreg)
 
 
 # # Cross-Validation
-# 
+#
 
 # In[20]:
 
@@ -175,10 +175,9 @@ from sklearn.model_selection import cross_val_score
 # In[ ]:
 
 
-#Applying 10-fold CV for logistic Regression 
+#Applying 10-fold CV for logistic Regression
 
-#creating the feature matrix 
+#creating the feature matrix
 accuracy_list = cross_val_score(logreg, X, y, cv=5, scoring='accuracy')
 
 print(accuracy_list)
-

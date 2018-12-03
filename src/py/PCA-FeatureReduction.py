@@ -20,14 +20,14 @@ from sklearn import metrics
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import r2_score
-# importing the required module 
+# importing the required module
 import matplotlib.pyplot as plt
 
 
 # In[2]:
 
 
-df = pd.read_csv('../data/merged-train-data.csv')
+df = pd.read_csv('../../data/merged-train-data.csv')
 df[0::100000]
 
 
@@ -43,19 +43,19 @@ y = df['Weekly_Sales']
 
 
 def plot(x_coors, y_coors, y_axis_name):
-    
-    plt.plot(x_coors, y_coors, color='green', marker='o', markerfacecolor='red', markersize=6) 
 
-    # naming the x axis 
-    plt.xlabel(' # of PCA components ') 
-    # naming the y axis 
-    plt.ylabel(y_axis_name) 
-  
-    # giving a title to my graph 
-    plt.title(y_axis_name + ' vs. PCA Components') 
-  
-    # function to show the plot 
-    plt.show() 
+    plt.plot(x_coors, y_coors, color='green', marker='o', markerfacecolor='red', markersize=6)
+
+    # naming the x axis
+    plt.xlabel(' # of PCA components ')
+    # naming the y axis
+    plt.ylabel(y_axis_name)
+
+    # giving a title to my graph
+    plt.title(y_axis_name + ' vs. PCA Components')
+
+    # function to show the plot
+    plt.show()
 
 
 # # PCA on Linear Regression
@@ -72,23 +72,23 @@ lin_x = []
 lin_y = []
 
 for i in range(1,13):
-    
+
     pca = PCA(n_components=i, whiten='True')
     new_X = pca.fit(X).transform(X)
     X_train, X_test, y_train, y_test = train_test_split(new_X, y, test_size=0.3, random_state=2)
-   
+
     lin_reg = LinearRegression()
     lin_reg.fit(X_train, y_train)
-    
+
     print('\nFor', i, 'components, these are the results\n')
     print("   Intercept: ", lin_reg.intercept_)
     print("   Coefficient: " , lin_reg.coef_)
-    
+
     y_pred = lin_reg.predict(X_test)
     mse = metrics.mean_squared_error(y_test,y_pred)
     rmse = np.sqrt(mse)
     print('   RMSE:',rmse)
-    
+
     lin_x.append(i)
     lin_y.append(rmse)
 
@@ -116,20 +116,20 @@ dec_x = []
 dec_y = []
 
 for i in range(1,13):
-    
+
     pca = PCA(n_components=i, whiten='True')
     new_X = pca.fit(X).transform(X)
     X_train, X_test, y_train, y_test = train_test_split(new_X, y, test_size=0.3, random_state=2)
-    
+
     dec_tree_regressor = DecisionTreeRegressor()
     dec_tree_regressor.fit(X_train, y_train)
-    
+
     score_dt = dec_tree_regressor.score(X_test, y_test)
     y_pred = dec_tree_regressor.predict(X_test)
-    
+
     print('\nFor', i, 'components, these are the results\n')
     print('   Score:',score_dt)
-    
+
     dec_x.append(i)
     dec_y.append(score_dt)
 
@@ -154,25 +154,25 @@ forest_x = []
 forest_y = []
 
 for i in range(1,13,2):
-    
+
     pca = PCA(n_components=i, whiten='True')
     new_X = pca.fit(X).transform(X)
     X_train, X_test, y_train, y_test = train_test_split(new_X, y, test_size=0.3, random_state=2)
-    
+
     rand_fst = RandomForestRegressor(n_estimators = 60, bootstrap = True, random_state=3)
     rand_fst.fit(X_train,y_train)
-    
+
     y_predict_rf = rand_fst.predict(X_test)
     y_predict_score = r2_score(y_test, y_predict_rf)
     mse = metrics.mean_squared_error(y_test, y_predict_rf)
     rmse = np.sqrt(mse)
-    
+
     print('\nFor', i, 'components, these are the results\n')
     print('   RMSE:', rmse)
-    
+
     forest_x.append(i)
     forest_y.append(rmse)
-    
+
 
 
 # In[17]:
@@ -198,7 +198,7 @@ for i in df['Weekly_Sales']:
         mx = i
     sm += i
 
-avg = sm/l    
+avg = sm/l
 
 abvSum = 0
 for i in df['Weekly_Sales']:
@@ -208,4 +208,3 @@ for i in df['Weekly_Sales']:
 print('The maximum value for Weekly_Sales is:',mx)
 print('The average Weekly_Sales are:',sm/l)
 print('This is the amount of values that are over the average:',abvSum,'; From a total of:', l, 'values.')
-

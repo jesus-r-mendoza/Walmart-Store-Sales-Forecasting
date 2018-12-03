@@ -12,8 +12,8 @@ from pandas import DatetimeIndex
 
 
 def mergeData(df):
-    features = pd.read_csv('features.csv')
-    storesdata = pd.read_csv('stores.csv')
+    features = pd.read_csv('../../data/features.csv')
+    storesdata = pd.read_csv('../../data/stores.csv')
     df = pd.merge(df, features, on=['Store','Date','IsHoliday'],how='inner')
     df = pd.merge(df, storesdata, on=['Store'], how='inner')
     return df
@@ -22,7 +22,7 @@ def mergeData(df):
 # In[3]:
 
 
-merged_df = mergeData(pd.read_csv('train.csv'))
+merged_df = mergeData(pd.read_csv('../../data/train.csv'))
 
 
 # In[4]:
@@ -34,7 +34,7 @@ merged_df.fillna(value=0, inplace=True)
 # In[5]:
 
 
-merged_df['Markdowns'] = merged_df['MarkDown1'] + merged_df['MarkDown2'] + merged_df['MarkDown3'] + merged_df['MarkDown4'] + merged_df['MarkDown5'] 
+merged_df['Markdowns'] = merged_df['MarkDown1'] + merged_df['MarkDown2'] + merged_df['MarkDown3'] + merged_df['MarkDown4'] + merged_df['MarkDown5']
 labelsToDrop = ['MarkDown1', 'MarkDown2', 'MarkDown3','MarkDown4','MarkDown5']
 merged_df.drop(labels=labelsToDrop,axis=1, inplace=True)
 
@@ -69,4 +69,3 @@ df[0::10000]
 
 
 df.to_csv('merged-train-data.csv', index = False)
-

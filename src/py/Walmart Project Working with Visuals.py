@@ -29,8 +29,8 @@ import seaborn as sns
 
 
 def mergeData(df):
-    features =pd.read_csv('features.csv')
-    storesdata =pd.read_csv('stores.csv')
+    features =pd.read_csv('../../data/features.csv')
+    storesdata =pd.read_csv('../../data/stores.csv')
     df = pd.merge(df, features, on=['Store','Date','IsHoliday'],how='inner')
     df = pd.merge(df, storesdata, on=['Store'], how='inner')
     return df
@@ -39,7 +39,7 @@ def mergeData(df):
 # In[17]:
 
 
-merged_df = mergeData(pd.read_csv('train.csv'))
+merged_df = mergeData(pd.read_csv('../../data/train.csv'))
 
 
 # In[70]:
@@ -70,7 +70,7 @@ def scatterplots(dataset,label):
     plt.scatter(dataset[label],y)
     plt.ylabel('Weekly_Sales')
     plt.xlabel(label)
-    
+
 
 
 # In[21]:
@@ -88,7 +88,7 @@ scatterplots(merged_df, 'IsHoliday')
 # In[22]:
 
 
-#See what our data actually looks like with the describe function. 
+#See what our data actually looks like with the describe function.
 merged_df.describe()
 
 
@@ -114,7 +114,7 @@ merged_df.fillna(value=0, inplace=True)
 # In[26]:
 
 
-merged_df['Markdowns'] = merged_df['MarkDown1'] + merged_df['MarkDown2'] + merged_df['MarkDown3'] + merged_df['MarkDown4'] + merged_df['MarkDown5'] 
+merged_df['Markdowns'] = merged_df['MarkDown1'] + merged_df['MarkDown2'] + merged_df['MarkDown3'] + merged_df['MarkDown4'] + merged_df['MarkDown5']
 labelsToDrop = ['MarkDown1', 'MarkDown2', 'MarkDown3','MarkDown4','MarkDown5']
 merged_df.drop(labels=labelsToDrop,axis=1, inplace=True)
 
@@ -188,7 +188,7 @@ X = df[['Store', 'Dept','IsHoliday', 'Temperature','Fuel_Price', 'CPI', 'Unemplo
 #here we need this library to scale X
 #from sklearn import preprocessing
 
-#normalizing feature comlumns 
+#normalizing feature comlumns
 #X = preprocessing.scale(X)
 
 
@@ -233,8 +233,8 @@ plt.xlabel('Y Test (True Values)')
 plt.ylabel('Predicted Values')
 
 
-# # Evaulating the Model 
-# 
+# # Evaulating the Model
+#
 # Calculating Mean Absolute Error, Mean Sqaure Error, And Root Mean Sqaure Error.
 
 # In[164]:
@@ -251,7 +251,7 @@ print('MSE ', metrics.mean_squared_error(y_test,predictions))
 print('RMSE ', np.sqrt(metrics.mean_squared_error(y_test,predictions)))
 
 
-# # RECREATE THE DATAFRAME 
+# # RECREATE THE DATAFRAME
 
 # In[90]:
 
@@ -263,4 +263,3 @@ cdf = pd.DataFrame(lr.coef_, columns=['Coeff'])
 
 
 cdf
-

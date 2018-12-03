@@ -19,19 +19,19 @@ from sklearn.model_selection import cross_val_score
 # In[16]:
 
 
-df = pd.read_csv('../data/merged-train-data.csv')
+df = pd.read_csv('../../data/merged-train-data.csv')
 df[0::100000]
 
 
 # In[17]:
 
 
-#creating the feature matrix 
+#creating the feature matrix
 feature_cols = ['Store', 'Temperature','Fuel_Price','CPI','Unemployment', 'Markdowns', 'Size', 'Dept', 'Weekly_Sales', 'Year', 'Month', 'Day']
 X = df[feature_cols]
 y = df['IsHoliday']
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, 
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3,
                                                     random_state=2)
 
 
@@ -77,4 +77,3 @@ accuracy_cv = accuracy_list.mean()
 
 
 print(accuracy_cv)
-

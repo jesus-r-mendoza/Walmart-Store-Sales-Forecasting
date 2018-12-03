@@ -40,7 +40,7 @@ from sklearn.model_selection import train_test_split
 # In[3]:
 
 
-df = pd.read_csv('../data/merged-train-data.csv')
+df = pd.read_csv('../../data/merged-train-data.csv')
 df[0::100000]
 
 
@@ -49,7 +49,7 @@ df[0::100000]
 # In[4]:
 
 
-#creating the feature matrix 
+#creating the feature matrix
 feature_cols = ['Store', 'Temperature','Fuel_Price','CPI','Unemployment', 'Markdowns', 'Size', 'Dept', 'Weekly_Sales', 'Year', 'Month', 'Day']
 X = df[feature_cols]
 
@@ -123,9 +123,9 @@ from sklearn.model_selection import cross_val_score
 # In[ ]:
 
 
-#Applying 10-fold CV for logistic Regression 
+#Applying 10-fold CV for logistic Regression
 
-#creating the feature matrix 
+#creating the feature matrix
 accuracy_cv_list = cross_val_score(logreg, X, y, cv=10, scoring='accuracy')
 
 print(accuracy_cv_list)
@@ -143,7 +143,7 @@ accuracy_list = accuracy_cv_list.mean()
 print(accuracy_list)
 
 
-#  
+#
 
 # In[ ]:
 
@@ -176,7 +176,7 @@ df.head()
 # In[ ]:
 
 
-#creating the feature matrix 
+#creating the feature matrix
 feature_cols_ = ['Store','Dept','Weekly_Sales','IsHoliday','Temperature','Fuel_Price','CPI','Unemployment','Type','Size','Markdowns','Year','Month','Day']
 X = df[feature_cols]
 
@@ -242,8 +242,8 @@ print(y_predict_logreg)
 
 
 from sklearn import metrics
-#check dataset, predict whatever is dataset, 
-#the function moves threadshold and detects , remember change pos_label to whatever it is, pos_leabel is define by u, so this 
+#check dataset, predict whatever is dataset,
+#the function moves threadshold and detects , remember change pos_label to whatever it is, pos_leabel is define by u, so this
 #pos_label=1 this is for prediciting isHolday is true!
 fpr, tpr, thresholds = metrics.roc_curve(y_test, y_predict_prob_lr[:,1], pos_label=1)
 
@@ -264,18 +264,18 @@ print("Area Under the Curve: ", AUC)
 
 
 #ROC CURVE
-# Importing the "pyplot" package of "matplotlib" library of python to generate 
+# Importing the "pyplot" package of "matplotlib" library of python to generate
 # graphs and plot curves:
 import matplotlib.pyplot as plt
 
-# The following line will tell Jupyter Notebook to keep the figures inside the explorer page 
+# The following line will tell Jupyter Notebook to keep the figures inside the explorer page
 # rather than openng a new figure window:
 get_ipython().run_line_magic('matplotlib', 'inline')
 
 plt.figure()
 
 # Roc Curve:
-plt.plot(fpr, tpr, color='black', lw=2, 
+plt.plot(fpr, tpr, color='black', lw=2,
      label='ROC Curve (area = %0.2f)' % AUC)
 
 # Random Guess line:
@@ -292,4 +292,3 @@ plt.title('Receiver operating characteristic (ROC)')
 plt.legend(loc="lower right")
 
 plt.show()
-

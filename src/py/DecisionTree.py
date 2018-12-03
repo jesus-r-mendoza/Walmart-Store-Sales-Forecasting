@@ -22,20 +22,20 @@ from sklearn.metrics import accuracy_score
 # In[2]:
 
 
-df = pd.read_csv('../data/merged-train-data.csv')
+df = pd.read_csv('../../data/merged-train-data.csv')
 df[0::100000]
 
 
 # In[3]:
 
 
-#creating the feature matrix 
+#creating the feature matrix
 def categorical_to_numeric(x):
     if x == False:
         return 0
     elif x == True:
         return 1
-    
+
 df['IsHoliday'] = df['IsHoliday'].apply(categorical_to_numeric)
 
 y =df['Weekly_Sales']
@@ -87,4 +87,3 @@ print(score_dt)
 
 for name, importance in zip(X.columns, regressor.feature_importances_):
     print(name, importance)
-
